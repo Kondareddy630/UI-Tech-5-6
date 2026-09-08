@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+ 
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+  </script>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+</head>
+
+
+<body class="container mt-5">
+
+
+
+<h1 class="text-muted">Student Data</h1>
+ <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit hic voluptatem obcaecati quas voluptas soluta culpa maxime quasi, iste eius quo neque voluptatum exercitationem officiis debitis quod dolor velit architecto natus placeat ullam doloribus? Accusamus mollitia veritatis obcaecati dolor animi necessitatibus possimus sapiente vel, sequi reiciendis explicabo a ipsa aspernatur!</p>
+
+
+ <div class="row my-3 align-items-center">
+
+  <div class="col-lg-6">
+    <input type="search" placeholder="Search Student" class="form-control form-control-lg">
+  </div>
+
+  <div class="col-lg-6">
+    <i class="bi bi-sort-alpha-down fs-2 btn btn-success" id="asc"></i>
+    <i class="bi bi-sort-alpha-up-alt fs-2 btn btn-danger"></i>
+  </div>
+
+
+ </div>
+
+
+ <div class="row">
+
+  <div class="col-lg-2">
+
+<select class="form-select" id="dropdown">
+
+<option value="all">All</option>
+<option value="java">Java</option>
+<option value="python">Python</option>
+<option value="ui">Ui Tech</option>
+
+</select>
+  </div>
+
+  <div class="col-lg-10">
+
+    <table class="table table-bordered shadow-lg table-striped">
+
+      <thead>
+         <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Fees</th>
+        <th>Phone</th>
+      </tr>
+      </thead>
+     
+      <tbody id="hello">
+
+      </tbody>
+
+    </table>
+
+
+  </div>
+
+ </div>
+  
+
+
+<script>
+
+let students=[
+
+
+{sid:101,name:"a",course:"java",fees:1000,phone:445566},
+{sid:102,name:"b",course:"ui",fees:9000,phone:855554},
+{sid:103,name:"c",course:"java",fees:8000,phone:788596},
+{sid:104,name:"d",course:"python",fees:3000,phone:63524152},
+{sid:105,name:"e",course:"java",fees:5500,phone:74256396},
+{sid:106,name:"f",course:"ui",fees:9600,phone:415263},
+
+
+
+]
+
+
+function displayData(mystudents)
+{
+
+
+document.getElementById("hello").innerHTML="";
+
+mystudents.map((s)=>{
+document.getElementById("hello").innerHTML +=`
+<tr>
+<td>${s.sid}</td>
+<td>${s.name}</td>
+<td>${s.course}</td>
+<td>${s.fees}</td>
+<td>${s.phone}</td>
+</tr>
+
+`
+
+  })
+
+}
+
+displayData(students);
+
+
+
+document.getElementById("dropdown").addEventListener("change",function()
+{
+  let selectedCourse=this.value;
+
+  if(selectedCourse==="all")
+{
+  displayData(students);
+}
+
+else{
+
+  let filteredStudents=students.filter((s)=>s.course==selectedCourse);
+
+  displayData(filteredStudents);
+
+}
+  
+
+});
+
+
+function asc(){
+
+  let asc=students.sort((a,b)=>{
+    return a.fees-b.fees;
+
+  });
+
+  displayData(asc);
+
+}
+
+
+document.getElementById("asc").addEventListener("click",asc);
+
+
+
+
+let numbers=[1,12,5,58,2,301];
+
+let mysort=numbers.sort((a,b)=>{
+ return b-a;
+})
+console.log(mysort);
+
+</script>
+
+
+</body>
+
+</html>
