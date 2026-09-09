@@ -31,12 +31,12 @@
  <div class="row my-3 align-items-center">
 
   <div class="col-lg-6">
-    <input type="search" placeholder="Search Student" class="form-control form-control-lg">
+    <input type="search" placeholder="Search Student" class="form-control form-control-lg" id="search">
   </div>
 
   <div class="col-lg-6">
     <i class="bi bi-sort-alpha-down fs-2 btn btn-success" id="asc"></i>
-    <i class="bi bi-sort-alpha-up-alt fs-2 btn btn-danger"></i>
+    <i class="bi bi-sort-alpha-up-alt fs-2 btn btn-danger" id="desc"></i>
   </div>
 
 
@@ -164,13 +164,39 @@ document.getElementById("asc").addEventListener("click",asc);
 
 
 
+function desc(){
 
-let numbers=[1,12,5,58,2,301];
+  let desc=students.sort((a,b)=>{
+    return b.fees-a.fees;
 
-let mysort=numbers.sort((a,b)=>{
- return b-a;
-})
-console.log(mysort);
+  });
+
+  displayData(desc);
+
+}
+
+
+document.getElementById("desc").addEventListener("click",desc);
+
+
+
+
+document.getElementById("search").addEventListener("keyup", function()
+{
+    let searchText = this.value.toLowerCase();
+
+    let filteredStudents = students.filter((s) => {
+
+        return (
+           
+            s.course.toLowerCase().includes(searchText)
+          
+        );
+
+    });
+
+    displayData(filteredStudents);
+});
 
 </script>
 
