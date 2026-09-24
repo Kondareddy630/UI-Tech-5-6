@@ -3,7 +3,7 @@ import { useState } from "react";
 function Primitive()
 {
 
-  // Number datatypes 
+  // Number
 
 const[state,setState]=useState(5000);
 const[price,setPrice]=useState(5000.00);
@@ -19,7 +19,7 @@ const[views,setViews]=useState(930000000);
 const[age,setAge]=useState(20);
 
 
-// strings
+// string
 
 const[message,setMessage]=useState("hello students");
 const[message1,setMessage1]=useState('hello students');// string literals
@@ -60,12 +60,24 @@ const[stock,setStock]=useState(true);
 const[salary,setSalary]=useState();
 console.log(salary)
 
+//null
+
+const[fees,setFees]=useState(null);
+
+
+
+
 
 
 
     return(
         <div className="container mt-5">
           
+          <h2>
+           {
+           (fees==null)?"You have pay  fees":fees
+           }
+          </h2>
 
             <h1>{(stock)?"Stock is available":"No Stock" }</h1>
             <h1>{(stock)?"True":"False" }</h1>
